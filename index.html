@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crypto Price Tool</title>
+<style>
+body { font-family: Arial; text-align:center; background:#111; color:white; }
+input{ padding:10px; margin:10px;}
+button{ padding:10px 20px; background:#f3ba2f; border:none; cursor:pointer;}
+#result{ margin-top:20px; font-size:20px;}
+</style>
+</head>
+<body>
+
+<h2>Live Crypto Price</h2>
+<input type="text" id="symbol" placeholder="BTCUSDT">
+<br>
+<button onclick="getPrice()">Check Price</button>
+<div id="result"></div>
+
+<script>
+function getPrice(){
+  const symbol = document.getElementById("symbol").value;
+  fetch("https://YOUR_NETLIFY_FUNCTION_URL/.netlify/functions/price?symbol=" + symbol)
+    .then(res => res.json())
+    .then(data => {
+      if(data.price){
+        document.getElementById("result").innerHTML =
+          symbol + " Price: $" + data.price;
+      }else{
+        document.getElementById("result").innerHTML = "Invalid Symbol";
+      }
+    });
+}
+</script>
+
+</body>
+</html>
