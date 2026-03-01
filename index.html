@@ -20,7 +20,7 @@ button{ padding:10px 20px; background:#f3ba2f; border:none; cursor:pointer;}
 <script>
 function getPrice(){
   const symbol = document.getElementById("symbol").value;
-  fetch("https://YOUR_NETLIFY_FUNCTION_URL/.netlify/functions/price?symbol=" + symbol)
+  fetch("https://binance-html-bot.netlify.app/" + symbol)
     .then(res => res.json())
     .then(data => {
       if(data.price){
